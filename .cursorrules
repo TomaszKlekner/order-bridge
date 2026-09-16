@@ -1,0 +1,34 @@
+# Order Bridge - Cursor Rules (.cursorrules)
+
+## 1. Project Overview & Architecture
+- **Project Name:** Order Bridge
+- **Tech Stack:** Node.js, Express, TypeScript, REST APIs.
+- **Architecture:** MVP focused on inbound order ingestion. 
+  - **WooCommerce:** Receives orders via Webhooks.
+  - **Allegro:** Fetches orders via Polling.
+  - **Flow:** Orders flow into the central Order API. 
+  - **Scope Constraint:** NO stock or price synchronization in this MVP. Keep the codebase modular and decoupled so synchronization features can be safely plugged in later.
+
+## 2. Coding Standards & TypeScript Guidelines
+- Write strict, clean, and well-typed TypeScript code (`strict: true`).
+- Avoid `any` types wherever possible. Define explicit interfaces or types for all request bodies, responses, and data models (e.g., WooCommerce webhook payloads, Allegro order schemas, internal Order DTOs).
+- Use modern ES Modules (ESM) or standard CommonJS consistent with the project setup; prefer async/await over raw promises or callbacks.
+- Implement robust error handling using custom error classes and centralized Express error-handling middleware.
+
+## 3. Project Structure
+Maintain a clean, feature-based or layered directory structure:
+- `/src/config` - Environment variables, database/external API clients.
+- `/src/controllers` - Request handlers for Express routes.
+- `/src/services` - Business logic (handling WooCommerce payloads, Allegro polling logic, mapping to internal order format).
+- `/src/routes` - Express router definitions.
+- `/src/models` or `/src/types` - TypeScript interfaces and types.
+- `/src/middleware` - Validation, authentication, and error-handling middleware.
+
+## 4. API Design & External Integrations
+- **WooCommerce Webhooks:** Ensure endpoints are secure, handle signature verification (if applicable), and respond quickly (200 OK) before processing heavy payloads asynchronously if needed.
+- **Allegro Polling:** Implement reliable polling mechanisms with proper state tracking (e.g., storing last checked timestamps or IDs) to prevent duplicate imports and handle rate limits gracefully.
+- **Validation:** Use validation libraries (like Zod or Joi) to validate incoming webhook payloads and query parameters.
+
+## 5. Logging & Testing
+- Use structured logging (e.g., Winston or Morgan) to track incoming webhook events and polling cycles.
+- Write descriptive error logs with contextual data (order IDs, source platform) to ease debugging.
