@@ -1,5 +1,6 @@
-import {app} from './app.js';
+import { app } from "./app.js";
+import { env } from "./config/env.js";
 
-const port: number = Number(process.env.PORT || 3001);
-
-app.listen(port, () => console.log(`Order Bridge listening on http://localhost:${port}`))
+app.listen(env.PORT, () =>
+  console.log(`Order Bridge listening on http://localhost:${env.PORT}`),
+);
