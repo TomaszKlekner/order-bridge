@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "order-bbridge",
+  "version": "1.0.0",
+  "description": "Minimalist, modular integration system built with Node.js, Express, and TypeScript, designed as an MVP for the central aggregation of orders from multiple sales channels.",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TomaszKlekner/order-bridge.git"
+  },
+  "keywords": [],
+  "author": "Tomasz Klekner",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/TomaszKlekner/order-bridge/issues"
+  },
+  "homepage": "https://github.com/TomaszKlekner/order-bridge#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.20.3",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}
